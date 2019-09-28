@@ -1,0 +1,13 @@
+#outer-wrapper {
+  display: flex;
+  margin: auto;
+  max-width: 95%;
+}
+
+#map {
+  max-width: 50%;
+}
+
+#search-and-list {
+  max-width: 50%;
+}
