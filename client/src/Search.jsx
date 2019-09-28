@@ -4,8 +4,8 @@ class Search extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      zipcode: '',
-      cuisine: '',
+      location: '',
+      term: '',
     };
 
     this.updateInput = this.updateInput.bind(this);
@@ -19,20 +19,20 @@ class Search extends React.Component {
   }
 
   render() {
-    const { zipcode, cuisine } = this.state;
+    const { location, term } = this.state;
 
     return (
       <form>
         <input 
-          name="cuisine" 
+          name="term" 
           placeholder="Hmmm.. What type of food do I want?"
-          value={cuisine}
+          value={term}
           onChange={this.updateInput}
         />
         <input 
-          name="zipcode" 
-          placeholder="Enter the zipcode you want to search for"
-          value={zipcode}
+          name="location" 
+          placeholder="Enter the location you want to search for"
+          value={location}
           onChange={this.updateInput}
         />
         <button onClick={(e) => this.props.searchRestaurant(e, this.state)}>Search</button>

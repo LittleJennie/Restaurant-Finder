@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 import Search from './Search';
 import RestaurantList from './RestaurantList';
 
@@ -6,8 +7,7 @@ class SearchAndList extends React.Component {
   constructor() {
     super();
     this.state = {
-      zipcode: '',
-      cuisine: '',
+      restaurants: [],
     };
 
     this.searchRestaurant = this.searchRestaurant.bind(this);
@@ -15,9 +15,16 @@ class SearchAndList extends React.Component {
 
   searchRestaurant(e, queries) {
     e.preventDefault();
-    // should axios to server and api to yelp to get results. 
-    // state to be compliant with the yelp search results
-    console.log(queries);
+    axios.get('/searchRestaurants', {
+      params: queries,
+    })
+      .then(({ data }) => {
+        console.log('return result: ',data);
+        this.setState({
+          restaurants: data,
+        });
+      })
+      .catch(err => console.log(err));
   }
 
   render() {
