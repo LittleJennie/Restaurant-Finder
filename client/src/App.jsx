@@ -1,4 +1,5 @@
 import React from 'react';
+import SearchAndList from './SearchAndList';
 import Map from './Map';
 import axios from 'axios';
 import mapKey from '../../mapKey';
@@ -17,7 +18,8 @@ class App extends React.Component{
     const { mapKey } = this.state;
 
     return(
-      <div>
+      <div id="outer-wrapper">
+        <SearchAndList />
         <Map mapKey={mapKey}/>
       </div>
     )
