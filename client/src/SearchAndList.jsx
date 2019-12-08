@@ -4,8 +4,8 @@ import Search from './Search';
 import RestaurantList from './RestaurantList';
 
 class SearchAndList extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       restaurants: [],
     };
@@ -19,21 +19,24 @@ class SearchAndList extends React.Component {
       params: queries,
     })
       .then(({ data }) => {
-        console.log('return result: ',data);
         this.setState({
           restaurants: data,
         });
+        return data;
       })
+      .then(data => this.props.updateRestaurantLists(data))
       .catch(err => console.log(err));
   }
 
   render() {
+    const { restaurants } = this.state;
+
     return (
       <div id="search-and-list">
         <Search searchRestaurant={this.searchRestaurant}/>
-        <RestaurantList />
+        <RestaurantList restaurants={restaurants}/>
       </div>
-    )
+    );
   }
 }
 
